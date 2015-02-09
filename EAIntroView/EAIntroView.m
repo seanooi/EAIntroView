@@ -536,6 +536,9 @@
     
     if (page == (_pages.count - 1) && self.swipeToExit) {
         self.alpha = ((self.scrollView.frame.size.width*_pages.count)-self.scrollView.contentOffset.x)/self.scrollView.frame.size.width;
+        if ([(id)self.delegate respondsToSelector:@selector(introWillFadeOut:)] && self.currentPageIndex < [self.pages count]) {
+            [self.delegate introWillFadeOut:self.alpha];
+        }
     } else {
         if([self pageForIndex:page]) {
             self.alpha = 1.f;
