@@ -826,6 +826,35 @@ CGFloat easeOutValue(CGFloat value) {
     [self showInView:view animateDuration:duration withInitialPageIndex:0];
 }
 
+- (void)showInView:(UIView *)view withAnimationType:(EAViewShowAnimation)animationType animationDuration:(CGFloat)duration {
+    if (animationType == EAViewShowAnimationSlideFromTop) {
+        self.layer.transform = CATransform3DMakeTranslation(0, -self.frame.size.height, 0);
+    }
+    
+    switch (animationType) {
+        case EAViewShowAnimationSlideFromTop:
+            self.layer.transform = CATransform3DMakeTranslation(0, -self.frame.size.height, 0);
+            break;
+            
+        case EAViewShowAnimationSlideFromLeft:
+            self.layer.transform = CATransform3DMakeTranslation(-self.frame.size.width, 0, 0);
+            break;
+            
+        case EAViewShowAnimationSlideFromRight:
+            self.layer.transform = CATransform3DMakeTranslation(self.frame.size.width, 0, 0);
+            break;
+            
+        case EAViewShowAnimationSlideFromBottom:
+            self.layer.transform = CATransform3DMakeTranslation(0, self.frame.size.height, 0);
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self showInView:view animateDuration:duration withInitialPageIndex:0];
+}
+
 - (void)showInView:(UIView *)view animateDuration:(CGFloat)duration withInitialPageIndex:(NSUInteger)initialPageIndex {
     if(![self pageForIndex:initialPageIndex]) {
         NSLog(@"Wrong initialPageIndex received: %ld",(long)initialPageIndex);
@@ -843,6 +872,7 @@ CGFloat easeOutValue(CGFloat value) {
    
     [UIView animateWithDuration:duration animations:^{
         self.alpha = 1;
+        self.layer.transform = CATransform3DIdentity;
     } completion:^(BOOL finished) {
         EAIntroPage *currentPage = _pages[self.currentPageIndex];
         if(currentPage.onPageDidAppear) currentPage.onPageDidAppear();

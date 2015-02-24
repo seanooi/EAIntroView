@@ -59,7 +59,8 @@ static NSString * const sampleDescription4 = @"Nam libero tempore, cum soluta no
     EAIntroView *intro = [[EAIntroView alloc] initWithFrame:rootView.bounds andPages:@[page1,page2,page3,page4]];
     [intro setDelegate:self];
     
-    [intro showInView:rootView animateDuration:0.3];
+//    [intro showInView:rootView animateDuration:0.3];
+    [intro showInView:rootView withAnimationType:EAViewShowAnimationSlideFromTop animationDuration:0.3];
 }
 
 - (void)showIntroWithFixedTitleView {
@@ -86,7 +87,8 @@ static NSString * const sampleDescription4 = @"Nam libero tempore, cum soluta no
     intro.titleViewY = 90;
     intro.backgroundColor = [UIColor colorWithRed:0.f green:0.49f blue:0.96f alpha:1.f]; //iOS7 dark blue
     
-    [intro showInView:rootView animateDuration:0.3];
+//    [intro showInView:rootView animateDuration:0.3];
+    [intro showInView:rootView withAnimationType:EAViewShowAnimationSlideFromLeft animationDuration:0.3];
 }
 
 - (void)showIntroWithCustomPages {
@@ -135,7 +137,8 @@ static NSString * const sampleDescription4 = @"Nam libero tempore, cum soluta no
     intro.skipButtonAlignment = EAViewAlignmentCenter;
     
     [intro setDelegate:self];
-    [intro showInView:rootView animateDuration:0.3];
+//    [intro showInView:rootView animateDuration:0.3];
+    [intro showInView:rootView withAnimationType:EAViewShowAnimationSlideFromRight animationDuration:0.3];
 }
 
 - (void)showIntroWithCustomView {
@@ -172,7 +175,8 @@ static NSString * const sampleDescription4 = @"Nam libero tempore, cum soluta no
     [intro.skipButton setTitle:@"Skip now" forState:UIControlStateNormal];
     [intro setDelegate:self];
     
-    [intro showInView:rootView animateDuration:0.3];
+//    [intro showInView:rootView animateDuration:0.3];
+    [intro showInView:rootView withAnimationType:EAViewShowAnimationSlideFromBottom animationDuration:0.3];
 }
 
 - (void)showIntroWithCustomViewFromNib {

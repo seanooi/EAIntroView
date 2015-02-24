@@ -21,12 +21,20 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
     EAViewAlignmentRight,
 };
 
+typedef NS_ENUM(NSUInteger, EAViewShowAnimation) {
+    EAViewShowAnimationFade,
+    EAViewShowAnimationSlideFromTop,
+    EAViewShowAnimationSlideFromLeft,
+    EAViewShowAnimationSlideFromRight,
+    EAViewShowAnimationSlideFromBottom,
+};
+
 @class EAIntroView;
 
 @protocol EAIntroDelegate<NSObject>
 @optional
-- (void)introDidFinish:(EAIntroView *)introView;
 - (void)introWillFadeOut:(CGFloat)alpha;
+- (void)introDidFinish:(EAIntroView *)introView;
 - (void)intro:(EAIntroView *)introView pageAppeared:(EAIntroPage *)page withIndex:(NSUInteger)pageIndex;
 - (void)intro:(EAIntroView *)introView pageStartScrolling:(EAIntroPage *)page withIndex:(NSUInteger)pageIndex;
 - (void)intro:(EAIntroView *)introView pageEndScrolling:(EAIntroPage *)page withIndex:(NSUInteger)pageIndex;
@@ -75,6 +83,7 @@ typedef NS_ENUM(NSUInteger, EAViewAlignment) {
 - (void)showFullscreenWithAnimateDuration:(CGFloat)duration andInitialPageIndex:(NSUInteger)initialPageIndex;
 - (void)showInView:(UIView *)view;
 - (void)showInView:(UIView *)view animateDuration:(CGFloat)duration;
+- (void)showInView:(UIView *)view withAnimationType:(EAViewShowAnimation)animationType animationDuration:(CGFloat)duration;
 - (void)showInView:(UIView *)view animateDuration:(CGFloat)duration withInitialPageIndex:(NSUInteger)initialPageIndex;
 
 - (void)hideWithFadeOutDuration:(CGFloat)duration;
